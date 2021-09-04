@@ -1,0 +1,35 @@
+/* external css: flickity.css */
+
+* { box-sizing: border-box; }
+
+body { font-family: sans-serif; }
+
+.carousel {
+  background: #EEE;
+}
+
+.carousel-cell {
+  width: 20%;
+  height: 400px;
+  display: inline-block;
+  margin-right: 10px;
+  border-radius: 5px;
+  counter-increment: carousel-cell;
+  background-color: #FBAB7E;
+background-image: linear-gradient(62deg, #FBAB7E 0%, #F7CE68 100%);
+
+}
+
+.carousel-cell.is-selected {
+  background:red;
+}
+
+/* cell number */
+.carousel-cell:before {
+  display: block;
+  text-align: center;
+  content: carousel-cell;
+  line-height: 150px;
+  font-size: 80px;
+  color: white;
+}

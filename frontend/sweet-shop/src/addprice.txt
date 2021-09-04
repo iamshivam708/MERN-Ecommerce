@@ -1,0 +1,1 @@
+grandTotal: res.data.map(datum => datum.totalPrice).reduce((a, b) => a + b)
