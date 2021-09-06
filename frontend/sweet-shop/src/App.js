@@ -11,6 +11,7 @@ import Footer from './components/Footer';
 import Cart from './components/Cart';
 import Wishlist from './components/Wishlist';
 import './app.css'
+import UserReview from './components/UserReview';
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
         <Route exact path="/product/details/:id" component={ProductDetails} />
         <Route exact path="/cart/:id" component={Cart}/>
         <Route exact path="/wishlist/:id" component={Wishlist}/>
+        <Route exact path="/user/review/:id" component={UserReview}/>
       </Switch>
       <Footer/>
     </BrowserRouter>

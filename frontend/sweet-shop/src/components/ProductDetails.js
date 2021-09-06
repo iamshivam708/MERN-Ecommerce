@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import axios from 'axios'
-import {Link} from 'react-router-dom'
 import '../app.css'
 
 class ProductDetails extends Component {
@@ -15,14 +14,18 @@ class ProductDetails extends Component {
             productDescription:[],
             products:[],
             userEmail: localStorage.getItem("user") || sessionStorage.getItem('user'),
-            userId:''
+            userId:'',
+            review:'',
+            stars:'',
+            reviews:[],
+            userName:''
         }
     }
 
     componentDidMount = () =>{
         if(!this.state.isLoggedIn){
             this.props.history.push('/login')
-        }else{
+        }else{       
             const url= `http://localhost:5000/product/${this.state.id}`
             axios.get(url).then((res) =>{
                 if(res.data !== 'none'){
@@ -72,11 +75,20 @@ class ProductDetails extends Component {
             const url4 = `http://localhost:5000/user/details/${this.state.userEmail}`
             axios.get(url4).then((res) =>{
                 this.setState({
-                    userId: res.data._id
+                    userId: res.data._id,
+                    userName: res.data.firstName
                 })
-                console.log(this.state.userId)
             }).catch((err) =>{
                 console.log(err)
+            })
+
+            const url5 = `http://localhost:5000/productDetails/review/${this.state.id}`
+            axios.get(url5).then((res) =>{
+                this.setState({
+                    reviews: res.data
+                })
+            }).catch((err) =>{
+                console.log(err);
             })
 
         }
@@ -118,9 +130,35 @@ class ProductDetails extends Component {
             console.log(err)
         })
     }
+
+    handleSimilar(id){
+        return (event) =>{
+            event.preventDefault();
+            this.props.history.push("/product/details/"+ id)
+            window.location.reload();
+        }
+    }
+
+    handleReview = (e) =>{
+        e.preventDefault();
+        const review = {
+            productId: this.state.id,
+            userId:this.state.userId,
+            userName: this.state.userName,
+            review: this.state.review,
+            stars: this.state.stars
+        }
+        const url="http://localhost:5000/productDetails/review"
+        axios.post(url, review).then(res =>{
+            window.location.reload();
+        }).catch(err =>{
+            console.log(err);
+        })
+
+    }
     
     render() {
-        const {product, productDescription, products} = this.state
+        const {product, productDescription, products, reviews} = this.state
         return (
             <div className="container-fluid">
                <h3 className="text-center mt-4 mb-3">Product Details</h3>
@@ -183,15 +221,45 @@ class ProductDetails extends Component {
                                 <img className="mt-3" src="/Images/rasgullaparts.jpeg" width="90%" alt="..." />
                                 <h3 className="lead mt-2">{product.name}</h3>
                                 <h3><span className="text-danger" style={{fontSize:"2em"}}>${product.sellingPrice}</span>&nbsp;&nbsp;<strike>${product.mrp}</strike></h3>
-                                <Link className="btn btn-primary" to={"/wishlist"+ product._id}>Add to Wishlist</Link>&nbsp;&nbsp;
-                                <Link className="btn btn-primary" to={"/cart/"+ product._id}>Add to cart</Link>
+                                <button onClick={this.handleSimilar(product._id)} className="btn btn-primary">Go to Product</button>
                             </div>
                         ))}
                     </div>
                 </div>
             
                 {/* customer reviews */}
-
+                <div className="container mt-5">
+                    <div className="row" align="center">
+                        <h3 className="lead">Customer Review</h3>
+                        <form method="post" onSubmit={this.handleReview}>
+                            <div className="col-4">
+                                <input placeholder="Enter Review" className="form-control" type="text" name="review" onChange={e => this.setState({review: e.target.value})} />
+                            </div>
+                            <div className="col-4 mt-2">
+                                <input placeholder="Give Stars (1 to 5)" className="form-control" type="text" name="stars" onChange={e => this.setState({stars: e.target.value})} />
+                            </div>
+                            <div className="col-4 mt-2">
+                                <button className="btn btn-primary">Submit</button>
+                            </div>
+                        </form>
+                    </div>
+                    <div className="row mt-5" align="center">
+                        <h3 className="lead">All Reviews</h3>
+                        {reviews.map((review) =>(
+                            <div className="row" key={review._id}>
+                                <div className="col-4">
+                                    <img className="img-rounded" src="/Images/sweet.png" width="50" height="50" alt="..." />
+                                </div>
+                                <div className="col-8">
+                                    <h3>{this.state.userName}</h3>
+                                    <p>{review.review}</p>
+                                    <p>{review.stars}</p>
+                                </div>
+                                <hr/>
+                            </div>
+                        ))}
+                    </div>
+                </div>
             </div>
         );
     }

@@ -2,7 +2,7 @@ const express = require('express')
 const router = express.Router();
 const User = require('../models/user')
 const bcrypt = require("bcryptjs");
-
+const Review = require('../models/review')
 
 //add user
 router.post('/signup', async (req, res) =>{
@@ -90,6 +90,17 @@ router.delete("/:id", async (req, res) =>{
         return res.status(200).send('The user not updated, something went wrong')
     }
     return res.status(200).send(user)
+})
+
+//getting reviews of particular user
+router.get("/review/:id", (req,res) =>{
+    Review.find({userId: req.params.id}).exec((err, data) =>{
+        if(err || !data){
+            res.status(400).send('none');
+        }else{
+            res.status(200).send(data);
+        }
+    })
 })
 
 

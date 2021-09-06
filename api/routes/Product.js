@@ -2,7 +2,7 @@ const express = require('express')
 const router = express.Router();
 const Product = require("../models/product")
 
-
+//add product
 router.post("/", async (req, res) =>{
     const product = new Product({
         name: req.body.name,
@@ -25,6 +25,7 @@ router.post("/", async (req, res) =>{
     res.send(products);
 })
 
+//get product
 router.get(`/`, async (req, res) =>{
     const product = await Product.find().populate('category productDetails');
 
