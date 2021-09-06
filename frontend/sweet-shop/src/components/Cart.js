@@ -78,6 +78,7 @@ class Cart extends Component {
     return (
       <div className="cart">
         <div className="container mt-4">
+          <h3 className="text-center">Cart</h3>
           <table className="table">
             <thead>
               <tr>

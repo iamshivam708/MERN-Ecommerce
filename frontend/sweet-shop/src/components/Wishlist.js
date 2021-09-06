@@ -12,6 +12,7 @@ class Wishlist extends Component {
         sessionStorage.getItem("isLoggedIn"),
       id: this.props.match.params.id,
       products: [],
+      product:[]
     };
   }
 
@@ -52,9 +53,37 @@ class Wishlist extends Component {
       }
   }
 
-  handleCart = (e) =>{
-    e.preventDefault();
-    
+  handleCart(id, productId){
+    return (event) =>{
+        event.preventDefault()
+        var url = `http://localhost:5000/product/${id}`
+        axios.get(url).then(res =>{
+          console.log(res.data)
+          const cartProduct = {
+            productId: id,
+            userId:this.state.id,
+            productName: res.data.name,
+            productQty: res.data.quantity,
+            qty:1,
+            price: res.data.sellingPrice
+          }
+          const url = "http://localhost:5000/cart"
+          axios.post(url,cartProduct).then((res) =>{
+                const url = `http://localhost:5000/wishlist/${productId}`
+                axios.delete(url).then(() =>{
+                  window.location.reload()
+                }).catch((err) =>{
+                  console.log(err)
+                })
+              this.props.history.push("/cart/"+ this.state.id)
+              window.location.reload()
+          }).catch((err) =>{
+              console.log(err)
+          })
+        }).catch(err =>{
+          console.log(err);
+        })
+    }
 }
 
   render() {
@@ -62,6 +91,7 @@ class Wishlist extends Component {
     return (
       <div className="cart">
         <div className="container mt-4">
+          <h3 className="text-center">Wishlist</h3>
           <table className="table">
             <thead>
               <tr>
@@ -78,7 +108,7 @@ class Wishlist extends Component {
                   <td>{product.productQty}g</td>
                   <td>{product.price}</td>
                   <td>
-                    <button onClick={this.handleCart} className="btn btn-primary">Add to Cart</button>&nbsp;&nbsp;
+                    <button onClick={this.handleCart(product.productId, product._id)} className="btn btn-primary">Add to Cart</button>&nbsp;&nbsp;
                     <button className="btn btn-danger" onClick={this.handleDelete(product._id)}>x</button>
                   </td>
                 </tr>

@@ -41,6 +41,7 @@ class Header extends Component {
         document.getElementById('logout').style.display = "none";
         document.getElementById('home').style.display = "none";
         document.getElementById('customer').style.display = "none";
+        document.getElementById('cart').style.display = "none"
     }
 }
 
