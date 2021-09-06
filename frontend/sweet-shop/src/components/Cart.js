@@ -124,7 +124,7 @@ class Cart extends Component {
               </tr>
             </tbody>
           </table>
-          <Link to="/" className="btn btn-primary">
+          <Link to={"/checkout/" + this.state.grandTotal + "/" + this.state.id} className="btn btn-primary">
             Go to checkout
           </Link>
         </div>

@@ -18,117 +18,148 @@ class ProductDetails extends Component {
             review:'',
             stars:'',
             reviews:[],
-            userName:''
+            userName:'',
+            alreadyAdded:0,
+            alreadyAddedInWishlist:0
         }
     }
 
-    componentDidMount = () =>{
-        if(!this.state.isLoggedIn){
-            this.props.history.push('/login')
-        }else{       
-            const url= `http://localhost:5000/product/${this.state.id}`
-            axios.get(url).then((res) =>{
-                if(res.data !== 'none'){
-                    this.setState({
-                        product: res.data,
-                        productDetails: res.data.productDetails
-                    })
-                }else{
-                    this.setState({
-                        product: null
-                    })
-                }
-            }).catch((err) =>{
-                console.log(err)
-            })
+    componentDidMount = () =>{      
+        const url= `http://localhost:5000/product/${this.state.id}`
+        axios.get(url).then((res) =>{
+            if(res.data !== 'none'){
+                this.setState({
+                    product: res.data,
+                    productDetails: res.data.productDetails
+                })
+            }else{
+                this.setState({
+                    product: null
+                })
+            }
+        }).catch((err) =>{
+            console.log(err)
+        })
 
-            const url2 = `http://localhost:5000/productDetails/${this.state.productDetails}`
-            axios.get(url2).then((res) =>{
-                if(res.data !== 'none'){
-                    this.setState({
-                        productDescription: res.data[0]
-                    })
-                }else{
-                    this.setState({
-                        productDescription: null
-                    })
-                }
+        const url2 = `http://localhost:5000/productDetails/${this.state.productDetails}`
+        axios.get(url2).then((res) =>{
+            if(res.data !== 'none'){
+                this.setState({
+                    productDescription: res.data[0]
+                })
+            }else{
+                this.setState({
+                    productDescription: null
+                })
+            }
+        }).catch(err =>{
+            console.log(err)
+        })
+
+        const url3="http://localhost:5000/product"
+        axios.get(url3).then((res) =>{
+            if(res.data !== 'none'){
+                this.setState({
+                    products: res.data
+                })
+            }else{
+                this.setState({
+                    products: null
+                })
+            }
+        }).catch((err) =>{
+            console.log(err)
+        })
+
+        const url4 = `http://localhost:5000/user/details/${this.state.userEmail}`
+        axios.get(url4).then((res) =>{
+            this.setState({
+                userId: res.data._id,
+                userName: res.data.firstName
+            })
+        }).catch((err) =>{
+            console.log(err)
+        })
+
+        const url5 = `http://localhost:5000/productDetails/review/${this.state.id}`
+        axios.get(url5).then((res) =>{
+            this.setState({
+                reviews: res.data
+            })
+        }).catch((err) =>{
+            console.log(err);
+        })
+
+        var url10 = `http://localhost:5000/cart/product/${this.state.id}`
+            axios.get(url10).then(res =>{
+                this.setState({
+                    alreadyAdded: res.data.count
+                })
             }).catch(err =>{
                 console.log(err)
             })
 
-            const url3="http://localhost:5000/product"
-            axios.get(url3).then((res) =>{
-                if(res.data !== 'none'){
-                    this.setState({
-                        products: res.data
-                    })
-                }else{
-                    this.setState({
-                        products: null
-                    })
-                }
-            }).catch((err) =>{
+            var url11 = `http://localhost:5000/wishlist/product/${this.state.id}`
+            axios.get(url11).then(res =>{
+                this.setState({
+                    alreadyAddedInWishlist: res.data.count
+                })
+            }).catch(err =>{
                 console.log(err)
             })
-
-            const url4 = `http://localhost:5000/user/details/${this.state.userEmail}`
-            axios.get(url4).then((res) =>{
-                this.setState({
-                    userId: res.data._id,
-                    userName: res.data.firstName
-                })
-            }).catch((err) =>{
-                console.log(err)
-            })
-
-            const url5 = `http://localhost:5000/productDetails/review/${this.state.id}`
-            axios.get(url5).then((res) =>{
-                this.setState({
-                    reviews: res.data
-                })
-            }).catch((err) =>{
-                console.log(err);
-            })
-
-        }
     }
 
     handleCart = (e) =>{
         e.preventDefault();
-        const cartProduct = {
-            productId: this.state.id,
-            userId:this.state.userId,
-            productName: this.state.product.name,
-            productQty: this.state.product.quantity,
-            qty:1,
-            price: this.state.product.sellingPrice
+        if(this.state.isLoggedIn){
+            if(this.state.alreadyAdded !== 0){
+                alert('product already added in the cart');
+            }else{
+                const cartProduct = {
+                    productId: this.state.id,
+                    userId:this.state.userId,
+                    productName: this.state.product.name,
+                    productQty: this.state.product.quantity,
+                    qty:1,
+                    price: this.state.product.sellingPrice
+                }
+                const url = "http://localhost:5000/cart"
+                axios.post(url,cartProduct).then((res) =>{
+                    this.props.history.push("/cart/"+ this.state.userId)
+                    window.location.reload()
+                }).catch((err) =>{
+                    console.log(err)
+                })
+            }
+        }else{
+            alert('You need to login to add product to the cart');
         }
-        const url = "http://localhost:5000/cart"
-        axios.post(url,cartProduct).then((res) =>{
-            this.props.history.push("/cart/"+ this.state.userId)
-            window.location.reload()
-        }).catch((err) =>{
-            console.log(err)
-        })
     }
 
     handleWishlist = (e) =>{
         e.preventDefault();
-        const WishlistProduct = {
-            productId: this.state.id,
-            userId:this.state.userId,
-            productName: this.state.product.name,
-            productQty: this.state.product.quantity,
-            price: this.state.product.sellingPrice
+        if(this.state.isLoggedIn){
+            if(this.state.alreadyAddedInWishlist !== 0){
+                alert('product already added in the wishlist');
+            }else{
+            const WishlistProduct = {
+                productId: this.state.id,
+                userId:this.state.userId,
+                productName: this.state.product.name,
+                productQty: this.state.product.quantity,
+                price: this.state.product.sellingPrice
+            }
+            const url = "http://localhost:5000/wishlist"
+            axios.post(url,WishlistProduct).then((res) =>{
+                this.props.history.push("/wishlist/"+ this.state.userId)
+                window.location.reload()
+            }).catch((err) =>{
+                console.log(err)
+            })
         }
-        const url = "http://localhost:5000/wishlist"
-        axios.post(url,WishlistProduct).then((res) =>{
-            this.props.history.push("/wishlist/"+ this.state.userId)
-            window.location.reload()
-        }).catch((err) =>{
-            console.log(err)
-        })
+        }else{
+            alert('You need to login to add product to the cart');
+        }
     }
 
     handleSimilar(id){

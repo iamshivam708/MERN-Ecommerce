@@ -13,24 +13,20 @@ class Home extends Component {
     }
 
     componentDidMount = () =>{
-        if(!this.state.isLoggedIn){
-            this.props.history.push('/login')
-        }else{
-            let url="http://localhost:5000/product"
-            axios.get(url).then((res) =>{
-                if(res.data !== 'none'){
-                    this.setState({
-                        products: res.data
-                    })
-                }else{
-                    this.setState({
-                        products: null
-                    })
-                }
-            }).catch((err) =>{
-                console.log(err)
-            })
-        }
+        let url="http://localhost:5000/product"
+        axios.get(url).then((res) =>{
+            if(res.data !== 'none'){
+                this.setState({
+                    products: res.data
+                })
+            }else{
+                this.setState({
+                    products: null
+                })
+            }
+        }).catch((err) =>{
+            console.log(err)
+        })
     }
     
     render() {

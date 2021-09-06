@@ -41,4 +41,15 @@ router.delete("/:id", (req, res) =>{
     })
 })
 
+//getting data from product id
+router.get('/product/:id', (req, res) =>{
+    Wishlist.count({productId: req.params.id}, function(err, count){
+        if(err || !count){
+            return res.status(200).json({"count": count})
+        }else{
+            return res.status(200).send({"count":count})
+        }
+    });
+})
+
 module.exports = router

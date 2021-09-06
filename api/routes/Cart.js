@@ -51,7 +51,7 @@ router.put('/update/:id', async (req, res) =>{
 router.get('/count/:userId', (req, res) =>{
     Cart.count({userId: req.params.userId}, function(err, count){
         if(err || !count){
-            return res.status(400).json('none')
+            return res.status(200).json({"count": count})
         }else{
             return res.status(200).send({"count":count})
         }
@@ -69,5 +69,16 @@ router.delete("/:id", (req, res) =>{
     })
 })
 
+
+//getting data through product id
+router.get('/product/:id', (req,res) =>{
+    Cart.count({productId: req.params.id}, function(err, count){
+        if(err || !count){
+            return res.status(200).json({"count": count})
+        }else{
+            return res.status(200).send({"count":count})
+        }
+    });
+})
 
 module.exports = router
