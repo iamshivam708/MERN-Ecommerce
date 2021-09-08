@@ -47,5 +47,16 @@ router.get(`/:id`,(req, res) =>{
     })
 })
 
+//getting searched result
+router.get(`/search/:search`,(req, res) =>{
+    Product.find({name: { $regex:req.params.search,  $options: 'i'} }).exec((err, product) =>{
+        if(err || !product){
+            return res.status(400).json('none')
+        }else{
+            return res.status(200).json(product)
+        }
+    })
+})
+
 
 module.exports = router

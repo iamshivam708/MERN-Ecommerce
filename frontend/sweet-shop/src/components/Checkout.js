@@ -13,7 +13,7 @@ class Checkout extends Component {
       total: this.props.match.params.total,
       id: this.props.match.params.id,
       products: [],
-      user:[]
+      user:[],
     };
   }
 
@@ -44,14 +44,38 @@ class Checkout extends Component {
     }
   };
 
-  handleCheckout = () =>{
-
+  handlePay = (e) =>{
+    e.preventDefault();
+    this.state.products.map((product) =>{
+      const order = {
+        userId: this.state.id,
+        productName: product.productName,
+        productQty: product.productQty,
+        qty: product.qty,
+        price: product.price,
+        totalPrice: product.totalPrice
+      }
+      var url = "http://localhost:5000/order";
+      axios.post(url, order).then((res) =>{
+        var url2 = `http://localhost:5000/cart/delete/${this.state.id}`;
+        axios.delete(url2).then((res) =>{
+          this.props.history.push('/thankyou');
+          window.location.reload();
+        }).catch(err =>{
+          console.log(err);
+        })
+      }).catch((err) =>{
+        console.log(err);
+      })
+    })
   }
+
 
   render() {
     const { products, user} = this.state;
     return (
       <div className="container-fluid">
+        <h3 className="text-danger mt-2">* non-returnable and only cash on delivery.</h3>
         <div className="row">
 
         {/* user details to check */}
@@ -96,7 +120,11 @@ class Checkout extends Component {
                 </tr>
               </tbody>
             </table>
-            <button onclick={this.handleCheckout} className="btn btn-danger">Pay now</button>
+            <button 
+        onClick={this.handlePay}
+        className="btn btn-primary">
+          Order Now
+        </button>
           </div>
         </div>
       </div>

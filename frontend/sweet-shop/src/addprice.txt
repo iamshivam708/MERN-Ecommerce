@@ -1,1 +1,4 @@
 grandTotal: res.data.map(datum => datum.totalPrice).reduce((a, b) => a + b)
+
+search query
+ Product.find({name: { $regex:req.params.search,  $options: 'i'} })

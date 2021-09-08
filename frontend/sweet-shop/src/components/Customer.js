@@ -71,12 +71,12 @@ class Customer extends Component {
                             </div>
                             
                             <div className="col-5 px-5 py-5" style={{background:'blue', marginLeft:"7rem"}}>
-                                <h3 className="text-white">Purchase History</h3>
-                                <img src="/Images/purchasehistory.png" width="50%" alt="..." style={{background:"white"}} />
+                                <Link to={"/orders/"+ user._id}><h3 className="text-white">Purchase History</h3>
+                                <img src="/Images/purchasehistory.png" width="50%" alt="..." style={{background:"white"}} /></Link>
                             </div>
                             <div className="col-5 mt-4 px-5 py-5" style={{background:'red'}}>
-                                <h3 className="text-white">Transaction History</h3>
-                                <img src="/Images/transactionhistory.png" width="50%" alt="..." style={{background:"white"}} />
+                                <Link to={"/transactions/"+ user._id}><h3 className="text-white">Transaction History</h3>
+                                <img src="/Images/transactionhistory.png" width="50%" alt="..." style={{background:"white"}} /></Link>
                             </div>
                             <div className="col-5 mt-4 px-5 py-5" style={{background:'blue', marginLeft:"7rem"}}>
                                 <Link to={'/user/review/'+user._id } style={{textDecoration:"none"}}><h3 className="text-white">Customer Reviews</h3>

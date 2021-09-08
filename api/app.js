@@ -28,6 +28,10 @@ app.use("/cart", CartRouter)
 const WishlistRouter = require("./routes/Wishlist")
 app.use("/wishlist", WishlistRouter)
 
+const OrderRouter = require("./routes/Order")
+app.use("/order", OrderRouter)
+
+
 //database connection
 mongoose.connect(process.env.CONNECTION_URL).then(() =>{
     console.log("database connected")

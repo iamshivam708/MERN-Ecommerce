@@ -13,6 +13,11 @@ import Wishlist from './components/Wishlist';
 import './app.css'
 import UserReview from './components/UserReview';
 import Checkout from './components/Checkout';
+import ThankYou from './components/ThankYou';
+import UnknownPage from './components/UnknownPage';
+import UserOrders from './components/UserOrders';
+import UserTransactions from './components/UserTransactions';
+import Search from './components/Search';
 
 function App() {
   return (
@@ -29,6 +34,11 @@ function App() {
         <Route exact path="/wishlist/:id" component={Wishlist}/>
         <Route exact path="/user/review/:id" component={UserReview}/>
         <Route exact path="/checkout/:total/:id" component={Checkout} />
+        <Route exact path="/thankyou" component={ThankYou} />
+        <Route exact path="/orders/:id" component={UserOrders}/>
+        <Route exact path="/transactions/:id" component={UserTransactions}/>
+        <Route exact path="/search/:search" component={Search} />
+        <Route component={UnknownPage}/>
       </Switch>
       <Footer/>
     </BrowserRouter>

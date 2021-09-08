@@ -69,6 +69,17 @@ router.delete("/:id", (req, res) =>{
     })
 })
 
+//delete cart product
+router.delete("/delete/:id", (req, res) =>{
+    Cart.deleteMany({userId:req.params.id}).exec((err, result) =>{
+        if(err || !result){
+            return res.status(400).json('none')
+        }else{
+            return res.status(200).send("deleted successfully")
+        }
+    })
+})
+
 
 //getting data through product id
 router.get('/product/:id', (req,res) =>{

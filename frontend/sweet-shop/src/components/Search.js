@@ -1,20 +1,19 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 import axios from 'axios'
 import {Link} from 'react-router-dom'
 
-class Home extends Component {
+class Search extends Component {
     constructor(props) {
         super(props)
     
         this.state = {
-             isLoggedIn:localStorage.getItem("isLoggedIn") || sessionStorage.getItem('isLoggedIn'),
-             products:[],
-             search:""
+             search: this.props.match.params.search,
+             products:[]
         }
     }
 
     componentDidMount = () =>{
-        let url="http://localhost:5000/product"
+        const url = `http://localhost:5000/product/search/${this.state.search}`
         axios.get(url).then((res) =>{
             if(res.data !== 'none'){
                 this.setState({
@@ -25,29 +24,16 @@ class Home extends Component {
                     products: null
                 })
             }
-        }).catch((err) =>{
+        }).catch(err =>{
             console.log(err)
         })
-    }
-
-    handleSearch = (e) =>{
-        e.preventDefault();
-        this.props.history.push("/search/"+ this.state.search);
     }
     
     render() {
         return (
-            <div className="home">
-                <div className="container">
-                    <div className="row mt-3">
-                        <form method="post" onSubmit={this.handleSearch}>
-                            <input onChange={(e) => this.setState({search: e.target.value})} type="text" name="search" className=" form-control" />
-                            <button type="submit" className="btn btn-danger">Search</button>
-                        </form>
-                    </div>
-
-                    <div className="row mt-4">
-                    <h3>Featured Products</h3>
+            <div className="container">
+                <div className="row mt-4">
+                    <h3 className="mb-2">Searched Result for: {this.state.search} </h3>
                     {(() =>{
                                 if(this.state.products  != null){
                                     return (
@@ -68,11 +54,9 @@ class Home extends Component {
                                             }
                                         })()}
                     </div>
-
-                </div>
             </div>
-        )
+        );
     }
 }
 
-export default Home
+export default Search;

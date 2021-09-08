@@ -16,7 +16,7 @@ body { font-family: sans-serif; }
   border-radius: 5px;
   counter-increment: carousel-cell;
   background-color: #FBAB7E;
-background-image: linear-gradient(62deg, #FBAB7E 0%, #F7CE68 100%);
+  background-image: linear-gradient(62deg, #FBAB7E 0%, #F7CE68 100%);
 
 }
 
