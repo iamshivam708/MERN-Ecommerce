@@ -23,7 +23,7 @@ router.post("/", (req, res) =>{
 })
 
 router.get('/:id', (req, res) =>{
-    Order.find({userId:req.params.id}).exec((err, order) =>{
+    Order.find({userId:req.params.id, status:'false'}).exec((err, order) =>{
         if(err || !order){
             return res.status(400).json('none')
         }else{

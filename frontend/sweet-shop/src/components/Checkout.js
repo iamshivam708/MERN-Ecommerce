@@ -46,6 +46,7 @@ class Checkout extends Component {
 
   handlePay = (e) =>{
     e.preventDefault();
+    // eslint-disable-next-line
     this.state.products.map((product) =>{
       const order = {
         userId: this.state.id,

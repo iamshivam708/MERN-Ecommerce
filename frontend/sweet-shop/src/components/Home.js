@@ -8,8 +8,7 @@ class Home extends Component {
     
         this.state = {
              isLoggedIn:localStorage.getItem("isLoggedIn") || sessionStorage.getItem('isLoggedIn'),
-             products:[],
-             search:""
+             products:[]
         }
     }
 
@@ -29,23 +28,11 @@ class Home extends Component {
             console.log(err)
         })
     }
-
-    handleSearch = (e) =>{
-        e.preventDefault();
-        this.props.history.push("/search/"+ this.state.search);
-    }
     
     render() {
         return (
             <div className="home">
                 <div className="container">
-                    <div className="row mt-3">
-                        <form method="post" onSubmit={this.handleSearch}>
-                            <input onChange={(e) => this.setState({search: e.target.value})} type="text" name="search" className=" form-control" />
-                            <button type="submit" className="btn btn-danger">Search</button>
-                        </form>
-                    </div>
-
                     <div className="row mt-4">
                     <h3>Featured Products</h3>
                     {(() =>{

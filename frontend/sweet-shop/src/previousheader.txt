@@ -1,0 +1,103 @@
+{/* <header>
+          <div
+            className="px-3 py-2 text-white"
+            style={{
+              backgroundColor: "#FEE140",
+              backgroundImage: "linear-gradient(90deg, #FEE140 0%, #FA709A 100%)"
+            }}
+          >
+            <div className="container">
+              <div className="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+                <Link
+                  to="/"
+                  className="d-flex align-items-center my-2 my-lg-0 me-lg-auto text-white text-decoration-none"
+                >
+                  <img
+                    src="/Images/logo.png"
+                    className="bi me-2"
+                    width="150"
+                    height="100"
+                    alt="..."
+                  />
+                </Link>
+
+                <ul className="nav col-12 col-lg-auto my-2 justify-content-center my-md-0 text-small">
+                  <li>
+                    <Link onClick={this.handleHomeColor} id="home" to="/" className="nav-link text-white">
+                      <span align="center">
+                        <i
+                          className="fas fa-home bi d-block mx-auto mb-1"
+                          width="24"
+                          height="24"
+                        ></i>
+                      </span>
+                      Home
+                    </Link>
+                  </li>
+                  <li>
+                    <Link onClick={this.handleLoginColor} id="login" to="/login" className="nav-link text-white">
+                      <span align="center">
+                        <i
+                          className="fas fa-user-plus bi d-block mx-auto mb-1"
+                          width="24"
+                          height="24"
+                        ></i>
+                      </span>
+                      Login
+                    </Link>
+                  </li>
+                  <li>
+                    <Link onClick={this.handleSignupColor} id="signup" to="/signup" className="nav-link text-secondary">
+                      <span align="center">
+                        <i
+                          className="fas fa-sign-in-alt bi d-block mx-auto mb-1"
+                          width="24"
+                          height="24"
+                        ></i>
+                      </span>
+                      Sign up
+                    </Link>
+                  </li>
+                    <li>
+                    <Link onClick={this.handleCart} id="cart" to={"/cart/" + this.state.userId} className="nav-link text-secondary">
+                      <span align="center">
+                        <i
+                          className="fas fa-shopping-cart bi d-block mx-auto mb-1"
+                          width="24"
+                          height="24"
+                        ></i>
+                      </span>
+                      <span className="text-danger">{this.state.count}</span>&nbsp;Cart
+                    </Link>
+                  </li>
+                  <li>
+                    <Link onClick={this.handleCustomerColor} id="customer" to={"/customer/" + this.state.email} className="nav-link text-secondary">
+                      <span align="center">
+                        <i
+                          className="fas fa-user-circle bi d-block mx-auto mb-1"
+                          width="24"
+                          height="24"
+                        ></i>
+                      </span>
+                      User
+                    </Link>
+                  </li>
+                  <li>
+                    <button style={{border:'none', background:'transparent'}} id="logout" onClick={this.handleLogout} className="nav-link text-secondary">
+                      <span align="center">
+                        <i
+                          className="fas fa-sign-out-alt bi d-block mx-auto mb-1"
+                          width="24"
+                          height="24"
+                        ></i>
+                      </span>
+                      Logout
+                    </button>
+                  </li>
+
+                </ul>
+
+              </div>
+            </div>
+          </div>
+        </header> */}
