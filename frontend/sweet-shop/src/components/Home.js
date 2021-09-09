@@ -19,6 +19,7 @@ class Home extends Component {
                 this.setState({
                     products: res.data
                 })
+                console.log(this.state.products)
             }else{
                 this.setState({
                     products: null
@@ -41,7 +42,7 @@ class Home extends Component {
                                             this.state.products.map((product) => (
                                                 <div className="col-3 mx-3" key={product._id}>
                                                     <div className="card" style={{width: "18rem"}}>
-                                                    <img className="card-img-top" src="/Images/logo.png" alt="Card cap" />
+                                                    <img className="card-img-top" src={"/products/"+ product.image} alt="Card cap" />
                                                     <div className="card-body">
                                                         <h5 className="card-title">{product.name}</h5>
                                                         <p className="card-text"><strike>{product.mrp}</strike>&nbsp;&nbsp;{product.sellingPrice}</p>

@@ -31,6 +31,9 @@ app.use("/wishlist", WishlistRouter)
 const OrderRouter = require("./routes/Order")
 app.use("/order", OrderRouter)
 
+const AdminRouter = require("./routes/Admin")
+app.use("/admin", AdminRouter)
+
 
 //database connection
 mongoose.connect(process.env.CONNECTION_URL).then(() =>{

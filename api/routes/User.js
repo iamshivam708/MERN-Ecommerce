@@ -17,7 +17,7 @@ router.post('/signup', async (req, res) =>{
         state: req.body.state,
         country: req.body.country,
         hashedPassword: bcrypt.hashSync(req.body.hashedPassword, 10),
-        isAdmin:req.body.isAdmin
+        isAdmin:'false'
     })
     users = await user.save()
 

@@ -20,7 +20,8 @@ class ProductDetails extends Component {
             reviews:[],
             userName:'',
             alreadyAdded:0,
-            alreadyAddedInWishlist:0
+            alreadyAddedInWishlist:0,
+            images:[]
         }
     }
 
@@ -31,6 +32,12 @@ class ProductDetails extends Component {
                 this.setState({
                     product: res.data,
                     productDetails: res.data.productDetails
+                })
+                // eslint-disable-next-line
+                res.data.images.map((img) =>{
+                    this.setState(previousState => ({
+                        images: [...previousState.images, img.filename]
+                    }));
                 })
             }else{
                 this.setState({
@@ -185,11 +192,28 @@ class ProductDetails extends Component {
         }).catch(err =>{
             console.log(err);
         })
+    }
 
+    handleImages(name){
+        return (event) =>{
+            event.preventDefault()
+            document.getElementById('mainImage').src = "/products/"+name
+        }
+    }
+
+    handleMainImage(name){
+        return (event) =>{
+            event.preventDefault()
+            var original = document.getElementById('mainImage').src = "/products/"+name
+            if(!original){
+                document.getElementById('mainImage').src = "/products/"+name
+            }
+            
+        }
     }
     
     render() {
-        const {product, productDescription, products, reviews} = this.state
+        const {product, productDescription, products, reviews, images} = this.state
         return (
             <div className="container-fluid">
                <h3 className="text-center mt-4 mb-3">Product Details</h3>
@@ -199,21 +223,14 @@ class ProductDetails extends Component {
                    <div className="row">
                     <div className="col-12 col-md-8">
                         <div className="row justify-content-center">
-                            <img src="/Images/rasgulla.jpg" alt="..." style={{maxWidth:"70%"}} />
+                            <img onClick={this.handleMainImage(product.image)} id="mainImage" src={"/products/"+ product.image} alt="..." style={{maxWidth:"70%"}} />
                         </div>
                         <div className="row mt-3">
-                            <div className="col-3">
-                                <img src="/Images/rasgullaparts.jpeg" width="80%"  alt="..." />
-                            </div>
-                            <div className="col-3">
-                                <img src="/Images/rasgullaparts.jpeg" width="80%" alt="..." />
-                            </div>
-                            <div className="col-3">
-                                <img src="/Images/rasgullaparts.jpeg" width="80%" alt="..." />
-                            </div>
-                            <div className="col-3">
-                                <img src="/Images/rasgullaparts.jpeg" width="80%" alt="..." />
-                            </div>
+                            {images.map((imgs) =>(
+                                <div className="col-3" key={imgs}>
+                                    <img onClick={this.handleImages(imgs)} id="img" src={"/products/"+ imgs} width="80%"  alt="..." />
+                                </div>
+                            ))}
                         </div>
                         <div className="row mt-5">
                             <h3 className="text-muted">Product Description</h3>
