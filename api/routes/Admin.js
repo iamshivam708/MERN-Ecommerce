@@ -18,6 +18,22 @@ var storage = multer.diskStorage({
   var upload = multer({ storage: storage })
 
 //get admin login
+router.post('/login', async (req, res) =>{
+  const user = await User.findOne({email: req.body.email});
+  if(!user){
+      return res.status(200).send({error:'The user not found'})
+  }
+  if(user.isAdmin !== true){
+    res.status(200).send({error: 'user is not admin'})
+  }
+  if(user && bcrypt.compareSync(req.body.password, user.hashedPassword)){
+      res.status(200).send({user:user.email})
+  }else{
+      res.status(200).send({error:"password is wrong"})
+  }
+
+  return res.status(200).send(user)
+})
 
  //create post 
 router.post("/",upload.fields([{"name":'image', maxCount:1},{"name": 'images',maxCount:4}]), (req,res) =>{
