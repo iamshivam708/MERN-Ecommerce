@@ -23,4 +23,36 @@ router.get(`/`, async (req, res) =>{
     res.send(categories);
 })
 
+router.get("/:id", (req, res) =>{
+    Category.findById(req.params.id).exec((err, category) =>{
+        if(err){
+            res.status(400).send(err)
+        }else{
+            res.status(200).send(category)
+        }
+    })
+})
+
+router.put('/update/:id', (req, res) =>{
+    Category.findByIdAndUpdate(req.params.id,{
+        name: req.body.name
+    }).exec((err, result) =>{
+        if(err){
+            res.status(400).send(err)
+        }else{
+            res.status(200).send('category updated')
+        }
+    })
+})
+
+router.delete("/:id", (req,res) =>{
+    Category.findByIdAndDelete(req.params.id).exec((err, result) =>{
+        if(err){
+            res.status(400).send(err)
+        }else{
+            res.status(200).send('category deleted')
+        }
+    })
+})
+
 module.exports = router

@@ -38,6 +38,37 @@ router.get(`/:id`,(req, res) =>{
     })
 })
 
+router.delete("/:id", (req,res) =>{
+    ProductDetails.findByIdAndDelete(req.params.id).exec((err, result) =>{
+        if(err){
+            res.status(400).send(err);
+        }else{
+            res.status(200).send("product deleted");
+        }
+    })
+})
+
+router.put("/update/:id", (req, res) =>{
+    
+    ProductDetails.findByIdAndUpdate(req.params.id,{
+        productId:req.body.productId,
+        keyFeatures: req.body.keyFeatures,
+        seller: req.body.seller,
+        description: req.body.description,
+        manufacturingDetails: req.body.manufacturingDetails
+    }).exec((err, result) =>{
+        if(err){
+            res.status(400).send(err);
+        }else{
+            res.status(200).send('product updated');
+        }
+    })
+})
+
+
+
+
+
 //adding review
 router.post("/review", async (req,res) =>{
         const review = new Review({

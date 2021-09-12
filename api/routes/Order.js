@@ -22,6 +22,16 @@ router.post("/", (req, res) =>{
     })
 })
 
+router.get("/", (req,res) =>{
+    Order.find().exec((err, result) =>{
+        if(err){
+            res.status(400).send(err);
+        }else{
+            res.status(200).send(result);
+        }
+    })
+})
+
 router.get('/:id', (req, res) =>{
     Order.find({userId:req.params.id, status:'false'}).exec((err, order) =>{
         if(err || !order){

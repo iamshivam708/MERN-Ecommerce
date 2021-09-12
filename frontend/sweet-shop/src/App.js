@@ -20,6 +20,17 @@ import UserTransactions from './components/UserTransactions';
 import Search from './components/Search';
 import AdminLogin from './components/admin/Login'
 import AdminDashboard from './components/admin/Dashboard'
+import AdminProduct from './components/admin/Product';
+import AddProduct from './components/admin/AddProduct';
+import UpdateProduct from './components/admin/UpdateProduct';
+import AdminUsers from './components/admin/User';
+import AdminCategory from './components/admin/Category';
+import AdminOrders from './components/admin/Orders';
+import UpdateCategory from './components/admin/UpdateCategory';
+import AddCategory from './components/admin/AddCategory';
+import AdminProductDetails from './components/admin/ProductDetails';
+import AddProductDetails from './components/admin/AddProductDetails';
+import UpdateProductDetails from './components/admin/UpdateProductDetails';
 
 class App extends Component{
   constructor(props) {
@@ -58,6 +69,17 @@ class App extends Component{
             <Route exact path="/search/:search" component={Search} />
             <Route exact path="/admin/login" component={AdminLogin}/>
             <Route exact path="/admin/dashboard" component={AdminDashboard}/>
+            <Route exact path="/admin/product" component={AdminProduct}/>
+            <Route exact path="/admin/add/product" component={AddProduct}/>
+            <Route exact path="/admin/update/product/:id" component={UpdateProduct}/>
+            <Route exact path="/admin/users" component={AdminUsers} />
+            <Route exact path="/admin/categories" component={AdminCategory} />
+            <Route exact path="/admin/orders" component={AdminOrders} />
+            <Route exact path='/admin/update/category/:id' component={UpdateCategory}/>
+            <Route exact path="/admin/add/category" component={AddCategory}/>
+            <Route exact path="/admin/productDetails" component={AdminProductDetails} />
+            <Route exact path="/admin/add/productDetails" component={AddProductDetails} />
+            <Route exact path='/admin/update/productDetails/:id' component={UpdateProductDetails}/>
             <Route component={UnknownPage}/>
           </Switch>
           {(() =>{

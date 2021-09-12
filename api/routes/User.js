@@ -63,6 +63,17 @@ router.get('/details/:email', async (req, res) =>{
     return res.status(200).send(user)
 })
 
+//getting all users
+router.get("/", (req,res) =>{
+    User.find().exec((err, user) =>{
+        if(err){
+            res.status(400).send(err)
+        }else{
+            res.status(200).send(user)
+        }
+    })
+})
+
 //update the user
 router.put('/update/:id', async (req,res) =>{
     const user = await User.findByIdAndUpdate(req.params.id,{
