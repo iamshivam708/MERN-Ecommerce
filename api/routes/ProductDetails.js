@@ -49,9 +49,8 @@ router.delete("/:id", (req,res) =>{
 })
 
 router.put("/update/:id", (req, res) =>{
-    
     ProductDetails.findByIdAndUpdate(req.params.id,{
-        productId:req.body.productId,
+        productId: req.body.productId,
         keyFeatures: req.body.keyFeatures,
         seller: req.body.seller,
         description: req.body.description,
@@ -60,13 +59,30 @@ router.put("/update/:id", (req, res) =>{
         if(err){
             res.status(400).send(err);
         }else{
-            res.status(200).send('product updated');
+            res.status(200).send(result);
         }
     })
 })
 
 
+router.post(`/try/:id`,(req, res) =>{
+    ProductDetails.findById(req.params.id).exec((err, productDetails) =>{
 
+        ProductDetails.findByIdAndUpdate(req.params.id,{
+            productId: req.body.productId || productDetails.productId,
+            keyFeatures: req.body.keyFeatures || productDetails.keyFeatures,
+            seller: req.body.seller || productDetails.seller,
+            description: req.body.description || productDetails.description,
+            manufacturingDetails: req.body.manufacturingDetails || productDetails.manufacturingDetails
+        }).exec((err, result) =>{
+            if(err){
+                res.status(400).send(err);
+            }else{
+                res.status(200).send(result);
+            }
+        })
+    })
+})
 
 
 //adding review

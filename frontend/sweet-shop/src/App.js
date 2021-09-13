@@ -45,13 +45,14 @@ class App extends Component{
   return (
     <BrowserRouter>
         <div className="app">
-        {(() =>{
+        {/* {(() =>{
               if(this.state.isAdminLoggedIn  !== 'true'){
                   return <Header/>
                   }else{
                       return 
                   }
-              })()}
+              })()} */}
+              <Header/>
           <Switch>
             <Route path="/" exact component={Home} />
             <Route exact path="/login" component={Login}/>
@@ -82,13 +83,14 @@ class App extends Component{
             <Route exact path='/admin/update/productDetails/:id' component={UpdateProductDetails}/>
             <Route component={UnknownPage}/>
           </Switch>
-          {(() =>{
+          <Footer/>
+          {/* {(() =>{
               if(this.state.isAdminLoggedIn  !== 'true'){
                   return <Footer/>
                   }else{
                       return 
                   }
-              })()}
+              })()} */}
         </div>
     </BrowserRouter>
   );

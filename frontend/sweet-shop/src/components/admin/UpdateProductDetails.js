@@ -38,8 +38,8 @@ class UpdateProductDetails extends Component {
              manufacturingDetails:this.state.manufacturingDetails
         }
 
-        var url = `http://localhost:5000/productDetails/update/${this.state.id}`;
-        axios.put(url, details).then(() =>{
+        var url = `http://localhost:5000/productDetails/try/${this.state.id}`;
+        axios.post(url, details).then(() =>{
             this.props.history.push('/admin/productDetails');
         }).catch((err) =>{
             console.log(err);
@@ -58,26 +58,26 @@ class UpdateProductDetails extends Component {
                 </div>
                 </div>
                 <div className="row mt-5 px-5 py-5">
-                    <form method="POST" onSubmit={this.handleUpdate}>
+                    <form method="POST" onSubmit={this.handleUpdate} id="form" encType="multipart/form-data" >
                         <div className="mb-2">
                             <label>Product Id</label>
-                            <input defaultValue={productDetails.productId} onChange={e => this.setState({productId: e.target.value})} type="text" className="form-control"/>
+                            <input name="productId" defaultValue={productDetails.productId} onChange={e => this.setState({productId: e.target.value})} type="text" className="form-control"/>
                         </div>
                         <div className="mb-2">
                             <label>Key Features</label>
-                            <input defaultValue={productDetails.keyFeatures} onChange={e => this.setState({keyFeatures: e.target.value})} type="text" className="form-control"/>
+                            <input name="keyFeatures" defaultValue={productDetails.keyFeatures} onChange={e => this.setState({keyFeatures: e.target.value})} type="text" className="form-control"/>
                         </div>
                         <div className="mb-2">
                             <label>Seller Details</label>
-                            <input defaultValue={productDetails.seller} onChange={e => this.setState({seller: e.target.value})} type="text" className="form-control"/>
+                            <input name="seller" defaultValue={productDetails.seller} onChange={e => this.setState({seller: e.target.value})} type="text" className="form-control"/>
                         </div>
                         <div className="mb-2">
                             <label>Description</label>
-                            <input defaultValue={productDetails.description} onChange={e => this.setState({description: e.target.value})} type="text" className="form-control"/>
+                            <input name="description" defaultValue={productDetails.description} onChange={e => this.setState({description: e.target.value})} type="text" className="form-control"/>
                         </div>
                         <div className="mb-2">
                             <label>Manufacturing Details</label>
-                            <input defaultValue={productDetails.manufacturingDetails} onChange={e => this.setState({manufacturingDetails: e.target.value})} type="text" className="form-control"/>
+                            <input name="manufacturingDetails" defaultValue={productDetails.manufacturingDetails} onChange={e => this.setState({manufacturingDetails: e.target.value})} type="text" className="form-control"/>
                         </div>
                         <button type="submit" className="btn btn-primary">Update</button>
                     </form>
