@@ -5,12 +5,11 @@
 body { font-family: sans-serif; }
 
 .carousel {
-  background: #EEE;
+  background: #fff3e0;
+  height:430px;
 }
 
 .carousel-cell {
-  width: 20%;
-  height: 400px;
   display: inline-block;
   margin-right: 10px;
   border-radius: 5px;
@@ -26,10 +25,10 @@ body { font-family: sans-serif; }
 
 /* cell number */
 .carousel-cell:before {
-  display: block;
+  display:block;
   text-align: center;
   content: carousel-cell;
-  line-height: 150px;
+  line-height: 100px;
   font-size: 80px;
   color: white;
 }

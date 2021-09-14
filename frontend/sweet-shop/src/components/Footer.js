@@ -16,7 +16,10 @@ class Footer extends Component {
                 backgroundColor: "#FEE140",
                 backgroundImage: "linear-gradient(90deg, #FEE140 0%, #FA709A 100%)"
               }}>
-              <div className="row py-5 px-5">
+                <div className="row" style={{background:"#ffcc80"}}>
+                  <a href="#top" style={{textDecoration:"none", color:"white"}}><p className="text-center pt-3">Top&nbsp;<i class="fas fa-arrow-up"></i></p></a>
+                </div>
+              <div className="row py-2 pt-4 px-5">
                   <div className="col-6 col-md-4" style={{lineHeight:"2vh"}}>
                     <Link to="/" className="nav-link text-dark">Home</Link>
                     <Link to="/" className="nav-link text-dark">About Us</Link>
@@ -27,6 +30,7 @@ class Footer extends Component {
                     <Link to="/" className="nav-link text-dark">Terms</Link>
                     <Link to="/" className="nav-link text-dark">Help & Support</Link>
                     <Link to="/" className="nav-link text-dark">Privacy Policy</Link>
+                    <Link to="/" className="nav-link text-dark">Return Policy</Link>
                     <Link to="/" className="nav-link text-dark">Sitemap</Link>
                   </div>
                   <div className="col-12 col-md-4 d-none d-md-block">
