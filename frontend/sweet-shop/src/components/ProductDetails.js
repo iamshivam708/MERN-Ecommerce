@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import "../app.css";
+import Swal from 'sweetalert2'
 
 class ProductDetails extends Component {
   constructor(props) {
@@ -144,7 +145,12 @@ class ProductDetails extends Component {
     e.preventDefault();
     if (this.state.isLoggedIn) {
       if (this.state.alreadyAdded !== 0) {
-        alert("product already added in the cart");
+        Swal.fire({
+          title: 'Error!',
+          text: 'product already added in the cart',
+          icon: 'error',
+          confirmButtonText: 'Cool'
+        })
       } else {
         const cartProduct = {
           productId: this.state.id,
@@ -166,7 +172,12 @@ class ProductDetails extends Component {
           });
       }
     } else {
-      alert("You need to login to add product to the cart");
+      Swal.fire({
+        title: 'Error!',
+        text: 'You need to login to add the product',
+        icon: 'error',
+        confirmButtonText: 'Cool'
+      })
     }
   };
 
@@ -174,7 +185,12 @@ class ProductDetails extends Component {
     e.preventDefault();
     if (this.state.isLoggedIn) {
       if (this.state.alreadyAddedInWishlist !== 0) {
-        alert("product already added in the wishlist");
+        Swal.fire({
+          title: 'Error!',
+          text: 'product already added in the wishlist',
+          icon: 'error',
+          confirmButtonText: 'Cool'
+        })
       } else {
         const WishlistProduct = {
           productId: this.state.id,
@@ -195,7 +211,12 @@ class ProductDetails extends Component {
           });
       }
     } else {
-      alert("You need to login to add product to the cart");
+      Swal.fire({
+        title: 'Error!',
+        text: 'You need to login to add the product',
+        icon: 'error',
+        confirmButtonText: 'Cool'
+      })
     }
   };
 
@@ -253,7 +274,7 @@ class ProductDetails extends Component {
         {/* product details */}
         <div className="container mt-5">
           <a id="top" href="...">{this.state.top}</a>
-          <div className="row px-5 py-1" style={{background:'#fff3e0', boxShadow:'5px 5px 5px 5px grey'}}>
+          <div className="row px-5 py-1" style={{background:'#fff3e0', boxShadow:'5px 5px 5px 5px #ffe0b2'}}>
             <h3
               className="text-center mt-4 mb-5 py-2"
               style={{

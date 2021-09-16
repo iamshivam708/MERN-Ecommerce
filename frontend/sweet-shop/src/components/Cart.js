@@ -111,8 +111,8 @@ class Cart extends Component {
                       <button className="btn btn-danger">change</button>
                     </form>
                   </td>
-                  <td>{product.price}</td>
-                  <td>{product.totalPrice}</td>
+                  <td>&#8377;{product.price}</td>
+                  <td>&#8377;{product.totalPrice}</td>
                   <td><button className="btn btn-danger" onClick={this.handleDelete(product._id)}>x</button></td>
                 </tr>
               ))}
@@ -120,7 +120,7 @@ class Cart extends Component {
                 <td colSpan="4" className="text-center">
                   Grand Total
                 </td>
-                <td>{this.state.grandTotal}</td>
+                <td>&#8377;{this.state.grandTotal}</td>
               </tr>
             </tbody>
           </table>
