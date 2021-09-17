@@ -31,6 +31,11 @@ import AddCategory from './components/admin/AddCategory';
 import AdminProductDetails from './components/admin/ProductDetails';
 import AddProductDetails from './components/admin/AddProductDetails';
 import UpdateProductDetails from './components/admin/UpdateProductDetails';
+import AboutUs from './components/AboutUs';
+import ContactUs from './components/ContactUs';
+import TermsAndCondition from './components/Terms&Condition';
+import PrivacyPolicy from './components/PrivacyPolicy';
+import Faq from './components/Faq';
 
 class App extends Component{
   constructor(props) {
@@ -81,6 +86,11 @@ class App extends Component{
             <Route exact path="/admin/productDetails" component={AdminProductDetails} />
             <Route exact path="/admin/add/productDetails" component={AddProductDetails} />
             <Route exact path='/admin/update/productDetails/:id' component={UpdateProductDetails}/>
+            <Route exact path='/about' component={AboutUs} />
+            <Route exact path="/contact" component={ContactUs}/>
+            <Route exact path="/terms" component={TermsAndCondition}/>
+            <Route exact path="/privacy" component={PrivacyPolicy}/>
+            <Route exact path="/faq" component={Faq}/>
             <Route component={UnknownPage}/>
           </Switch>
           <Footer/>

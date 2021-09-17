@@ -543,8 +543,8 @@ class Home extends Component {
               <div className="card">
                 <img
                   src="/Images/safePayment.png"
-                  height="200px"
-                  width="100%"
+                  height="180px"
+                  width="95%"
                   alt="..."
                 />
                 <div className="card-body">
@@ -557,8 +557,8 @@ class Home extends Component {
               <div className="card">
                 <img
                   src="/Images/trust.png"
-                  height="200px"
-                  width="100%"
+                  height="180px"
+                  width="95%"
                   alt="..."
                 />
                 <div className="card-body">
@@ -571,8 +571,8 @@ class Home extends Component {
               <div className="card">
                 <img
                   src="/Images/callCenter.png"
-                  height="200px"
-                  width="100%"
+                  height="180px"
+                  width="95%"
                   alt="..."
                 />
                 <div className="card-body">
@@ -585,8 +585,8 @@ class Home extends Component {
               <div className="card">
                 <img
                   src="/Images/mobile.png"
-                  height="200px"
-                  width="100%"
+                  height="180px"
+                  width="95%"
                   alt="..."
                 />
                 <div className="card-body">

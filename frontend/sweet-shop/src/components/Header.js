@@ -119,7 +119,7 @@ class Header extends Component {
     return (
       <header>
         <div
-          className="px-3 py-2 text-white"
+          className="px-3 text-white"
           style={{
             backgroundColor: "#FEE140",
             backgroundImage: "linear-gradient(90deg, #FEE140 0%, #FA709A 100%)",

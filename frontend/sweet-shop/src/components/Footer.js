@@ -22,15 +22,14 @@ class Footer extends Component {
               <div className="row py-2 pt-4 px-5">
                   <div className="col-6 col-md-4" style={{lineHeight:"2vh"}}>
                     <Link to="/" className="nav-link text-dark">Home</Link>
-                    <Link to="/" className="nav-link text-dark">About Us</Link>
-                    <Link to="/" className="nav-link text-dark">Get The App</Link>
-                    <Link to="/" className="nav-link text-dark">Contact Us</Link>
+                    <Link to="/about" className="nav-link text-dark">About Us</Link>
+                    <a rel="noreferrer" target="_blank" href="https://play.google.com/store/apps/details?id=com.google.android.apps.maps&hl=en_IN&gl=US" className="nav-link text-dark">Get The App</a>
+                    <Link to="/contact" className="nav-link text-dark">Contact Us</Link>
                   </div>
                   <div className="col-6 col-md-4" style={{lineHeight:"2vh"}}>
-                    <Link to="/" className="nav-link text-dark">Terms</Link>
-                    <Link to="/" className="nav-link text-dark">Help & Support</Link>
-                    <Link to="/" className="nav-link text-dark">Privacy Policy</Link>
-                    <Link to="/" className="nav-link text-dark">Return Policy</Link>
+                    <Link to="/terms" className="nav-link text-dark">Terms & Conditions</Link>
+                    <Link to="/faq" className="nav-link text-dark">FAQs</Link>
+                    <Link to="/privacy" className="nav-link text-dark">Privacy Policy</Link>
                     <Link to="/" className="nav-link text-dark">Sitemap</Link>
                   </div>
                   <div className="col-12 col-md-4 d-none d-md-block">
