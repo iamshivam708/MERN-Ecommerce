@@ -42,39 +42,39 @@ class Home extends Component {
         {/* second header */}
         <div class="container-fluid" style={{ background: "#ffcc80" }}>
           <div className="container">
-            <div class="nav-scroller py-1">
-              <nav class="nav d-flex justify-content-between">
-                <a class="p-2 text-white nav-link" href="...">
+            <div className="nav-scroller py-1">
+              <nav className="nav d-flex justify-content-between">
+                <a className="p-2 text-white nav-link" href="...">
                   Sweet
                 </a>
-                <a class="p-2 text-white nav-link" href="...">
+                <a className="p-2 text-white nav-link" href="...">
                   Chocolates
                 </a>
-                <a class="p-2 text-white nav-link" href="...">
+                <a className="p-2 text-white nav-link" href="...">
                   Cake
                 </a>
-                <a class="p-2 text-white nav-link" href="...">
+                <a className="p-2 text-white nav-link" href="...">
                   Halwa
                 </a>
-                <a class="p-2 text-white nav-link" href="...">
+                <a className="p-2 text-white nav-link" href="...">
                   Candy & Toffee
                 </a>
-                <a class="p-2 text-white nav-link" href="...">
+                <a className="p-2 text-white nav-link" href="...">
                   Laddoo
                 </a>
-                <a class="p-2 text-white nav-link" href="...">
+                <a className="p-2 text-white nav-link" href="...">
                   Drinks
                 </a>
-                <a class="p-2 text-white nav-link" href="...">
+                <a className="p-2 text-white nav-link" href="...">
                   Barfi
                 </a>
-                <a class="p-2 text-white nav-link" href="...">
+                <a className="p-2 text-white nav-link" href="...">
                   Peda
                 </a>
-                <a class="p-2 text-white nav-link" href="...">
+                <a className="p-2 text-white nav-link" href="...">
                   Jalebi
                 </a>
-                <a class="p-2 text-white nav-link" href="...">
+                <a className="p-2 text-white nav-link" href="...">
                   IceCream
                 </a>
               </nav>
@@ -194,11 +194,11 @@ class Home extends Component {
         </div>
         {/* different options */}
         <div className="container">
-          <div class="row">
-            <div class="col-sm-4">
-              <div class="card">
-                <div class="card-body">
-                  <h5 class="card-title">Shop By Categories</h5>
+          <div className="row">
+            <div className="col-sm-4">
+              <div className="card">
+                <div className="card-body">
+                  <h5 className="card-title">Shop By Categories</h5>
                   <div className="row px-2 py-2">
                     <div className="col-6" style={{ height: "100px" }}>
                       <img
@@ -239,10 +239,10 @@ class Home extends Component {
                 </div>
               </div>
             </div>
-            <div class="col-sm-4">
-              <div class="card">
-                <div class="card-body">
-                  <h5 class="card-title">Best Sellers</h5>
+            <div className="col-sm-4">
+              <div className="card">
+                <div className="card-body">
+                  <h5 className="card-title">Best Sellers</h5>
                   <div className="row px-2 py-2">
                     <div className="col-6" style={{ height: "100px" }}>
                       <img
@@ -283,10 +283,10 @@ class Home extends Component {
                 </div>
               </div>
             </div>
-            <div class="col-sm-4">
-              <div class="card">
-                <div class="card-body">
-                  <h5 class="card-title">Deals Of The Day</h5>
+            <div className="col-sm-4">
+              <div className="card">
+                <div className="card-body">
+                  <h5 className="card-title">Deals Of The Day</h5>
                   <div className="row px-2 py-2">
                     <div className="col-6" style={{ height: "100px" }}>
                       <img
@@ -327,20 +327,20 @@ class Home extends Component {
         </div>
         {/* jumbotron */}
         <section
-          class="mt-5 text-center container-fluid"
+          className="mt-5 text-center container-fluid"
           style={{
             backgroundImage: `url(${this.state.background})`,
             backgroundRepeat: "no-repeat",
             backgroundSize: "100%",
           }}
         >
-          <div class="row py-lg-5">
+          <div className="row py-lg-5">
             <div
-              class="col-lg-6 col-md-8 mx-auto px-5 py-5"
+              className="col-lg-6 col-md-8 mx-auto px-5 py-5"
               style={{ background: "rgba(0,0,0,0.3)" }}
             >
-              <h1 class="text-white">Best Sweets At Cheapest Rate</h1>
-              <p class="lead" style={{ color: "#fafafa" }}>
+              <h1 className="text-white">Best Sweets At Cheapest Rate</h1>
+              <p className="lead" style={{ color: "#fafafa" }}>
                 Best Sweets at your door steps completely fresh and at as
                 cheapest rate as possible.
               </p>

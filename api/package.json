@@ -19,6 +19,7 @@
     "mongodb": "^4.1.1",
     "mongoose": "^6.0.2",
     "multer": "^1.4.3",
+    "node-mandrill": "^1.0.1",
     "objectid": "^3.2.1",
     "razorpay": "^2.0.6",
     "request": "^2.88.2"

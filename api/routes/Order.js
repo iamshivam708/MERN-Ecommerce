@@ -10,6 +10,14 @@ router.post("/", (req, res) =>{
         qty: req.body.qty,
         price: req.body.price,
         totalPrice: req.body.totalPrice,
+        firstName:req.body.firstName,
+        lastName:req.body.lastName,
+        email: req.body.email,
+        address:req.body.address,
+        country:req.body.country,
+        state:req.body.state,
+        city:req.body.city,
+        phone:req.body.phone,
         status:'false'
     }]
 

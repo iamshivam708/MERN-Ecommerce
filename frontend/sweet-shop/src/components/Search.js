@@ -39,11 +39,11 @@ class Search extends Component {
                                     return (
                                             this.state.products.map((product) => (
                                                 <div className="col-3 mx-3" key={product._id}>
-                                                    <div className="card" style={{width: "18rem"}}>
-                                                    <img className="card-img-top" src="/Images/logo.png" alt="Card cap" />
+                                                    <div className="card" style={{width: "18rem",height:"30rem"}}>
+                                                    <img width="100%" height="100%" className="card-img-top" src={"/products/"+ product.image} alt="Card cap" />
                                                     <div className="card-body">
                                                         <h5 className="card-title">{product.name}</h5>
-                                                        <p className="card-text"><strike>{product.mrp}</strike>&nbsp;&nbsp;{product.sellingPrice}</p>
+                                                        <p className="card-text"><strike>&#8377;{product.mrp}</strike>&nbsp;&nbsp;&#8377;{product.sellingPrice}</p>
                                                         <Link to={"/product/details/"+ product._id} className="btn btn-primary">Go to Product Page</Link>
                                                     </div>
                                                     </div>

@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 
+
 class Cart extends Component {
   constructor(props) {
     super(props);
@@ -12,7 +13,7 @@ class Cart extends Component {
         sessionStorage.getItem("isLoggedIn"),
       id: this.props.match.params.id,
       products: [],
-      qty: "",
+      qty: 1,
       grandTotal:0
     };
   }
@@ -45,20 +46,28 @@ class Cart extends Component {
   handleChange(id,price) {
     return (event) => {
       event.preventDefault();
-      const url = `http://localhost:5000/cart/update/${id}`;
-      const product = {
-        qty: this.state.qty,
-        price: price
-      };
-      axios
-        .put(url, product)
-        .then((res) => {
-          window.location.reload()
+      if(this.state.qty < 1){
+        alert('Qty cannot be less than 1');
+        this.setState({
+          qty:1
         })
-        .catch((err) => {
-          console.log(err);
-        });
-    };
+        window.location.reload()
+      }else{
+        const url = `http://localhost:5000/cart/update/${id}`;
+        const product = {
+          qty: this.state.qty,
+          price: price
+        };
+        axios
+          .put(url, product)
+          .then((res) => {
+            window.location.reload()
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+       };
+  }
   }
 
   handleDelete(id){
@@ -77,8 +86,11 @@ class Cart extends Component {
     const { products } = this.state;
     return (
       <div className="cart">
-        <div className="container mt-4">
-          <h3 className="text-center">Cart</h3>
+        <div className="container mt-4 px-5 py-5" style={{background:"#fafafa"}}>
+        <div class="px-5 py-3 text-center">
+            <i class="fas fa-shopping-cart fa-3x"></i>&nbsp;
+            <h2 style={{display:"inline-block"}} class="display-5 fw-bold">Cart</h2>
+        </div>
           <table className="table">
             <thead>
               <tr>
@@ -124,7 +136,7 @@ class Cart extends Component {
               </tr>
             </tbody>
           </table>
-          <Link to={"/checkout/" + this.state.grandTotal + "/" + this.state.id} className="btn btn-primary">
+          <Link style={{maxWidth:"10rem"}} to={"/checkout/" + this.state.grandTotal + "/" + this.state.id} className="btn btn-primary">
             Go to checkout
           </Link>
         </div>

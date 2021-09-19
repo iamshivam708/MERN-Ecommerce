@@ -21,6 +21,30 @@ const OrderSchema = mongoose.Schema({
     totalPrice:{
         type:Number
     },
+    firstName:{
+        type:String
+    },
+    lastName:{
+        type:String
+    },
+    email:{
+        type:String
+    },
+    address:{
+        type:String
+    },
+    country:{
+        type:String
+    },
+    state:{
+        type:String
+    },
+    city:{
+        type:String
+    },
+    phone:{
+        type:Number
+    },
     status:{
         type:String
     }
